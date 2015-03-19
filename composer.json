@@ -1,0 +1,23 @@
+{
+    "name": "idsite/yii2-scroll-pager",
+    "version": "0.0.1",
+    "description": "расширение для Yii2 для scroll пагинации",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "extension.scroll-pager", "pagination", "ajax", "scroll"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Алексей Державин",
+            "email": "rx6@mail.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "idsite\\scrollPager\\": ""
+        }
+    }
+}
