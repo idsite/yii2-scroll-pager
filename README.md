@@ -24,3 +24,26 @@ to the require section of your `composer.json` file.
 
 Usage
 -----
+
+
+
+нужно вручную добавить условие на фильтрацию по ИДшникам, которые передаються по умолчанию в GET параметре "notid".
+
+```php
+if ($ids = Yii::$app->getRequest()->getQueryParam('notid')) {
+            $ids = array_map(function($v) {
+                return (int) $v;
+            }, explode(',', $ids));
+            if ($ids) {
+                return "AND city.id NOT IN (" . implode(',', $ids) . ")";
+}
+}
+```
+или если сортировка по айдишнику можно так
+```php
+if ($ids = Yii::$app->getRequest()->getQueryParam('notid')) {
+            if ($ids = explode(',', $ids)) {
+                $query->andWhere('id<:lid',[':lid'=>array_pop($ids)]);
+            }
+        }
+```

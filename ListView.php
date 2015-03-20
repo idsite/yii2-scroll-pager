@@ -41,7 +41,7 @@ class ListView extends \yii\widgets\ListView {
 
     public function run() {
         if ($this->dataProvider->getPagination()) {
-            if (Yii::$app->getRequest()->isAjax && (Yii::$app->getRequest()->getQueryParam($this->nameParam) !== null)) {
+            if (\Yii::$app->getRequest()->headers->has('X-SCROLL-PAGER')) {
                 Yii::$app->getResponse()->clearOutputBuffers();
                 echo $this->renderItems();
                 Yii::$app->end();

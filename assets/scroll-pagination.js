@@ -56,6 +56,7 @@
                     type: "GET",
                     url: data.options.url,
                     data: params,
+                    headers: {"X-SCROLL-PAGER": "1"},
                     // dataType:'html',
                     beforeSend: function (xhr) {
                         data.data.load = xhr;
@@ -96,6 +97,7 @@
             $.ajax({
                 type: "GET",
                 url: url,
+                headers: {"X-SCROLL-PAGER": "1"},
                 beforeSend: function (xhr) {
                     data.data.load = xhr;
                     $this.trigger('load-start');
