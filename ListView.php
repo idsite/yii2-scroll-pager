@@ -1,12 +1,7 @@
 <?php
 
 namespace idsite\scrollPager;
-
-use yii\db\Connection;
-use yii\di\Instance;
 use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use Yii;
 
 class ListView extends \yii\widgets\ListView {
