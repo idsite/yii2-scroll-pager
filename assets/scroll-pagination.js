@@ -3,7 +3,6 @@
     var methods = {
         init: function (options) {
             options = $.extend({
-                pageSize: 100,
                 distanceDownload: 1000, //количесво пиксилей которое должно оставаться до конца списка, для запуска следушей части списка
                 url: window.location.href,
                 separatorId: '-',

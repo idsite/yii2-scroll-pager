@@ -1,6 +1,7 @@
 <?php
 
 namespace idsite\scrollPager;
+
 use yii\base\InvalidConfigException;
 use Yii;
 
@@ -35,17 +36,17 @@ class ListView extends \yii\widgets\ListView {
     }
 
     public function run() {
-        if ($this->dataProvider->getPagination()) {
-            if (\Yii::$app->getRequest()->headers->has('X-SCROLL-PAGER')) {
-                Yii::$app->getResponse()->clearOutputBuffers();
-                echo $this->renderItems();
-                Yii::$app->end();
-            }
 
-            $params = array_merge(['pageSize' => $this->dataProvider->getPagination()->pageSize, 'nameParam' => $this->nameParam], $this->scriptOptions);
-
-            $this->view->registerJs('$("#' . $this->options['id'] . '").scrollPagination(' . \yii\helpers\Json::encode($params) . ')');
+        if (\Yii::$app->getRequest()->headers->has('X-SCROLL-PAGER')) {
+            Yii::$app->getResponse()->clearOutputBuffers();
+            echo $this->renderItems();
+            Yii::$app->end();
         }
+
+        $params = array_merge(['nameParam' => $this->nameParam], $this->scriptOptions);
+
+        $this->view->registerJs('$("#' . $this->options['id'] . '").scrollPagination(' . \yii\helpers\Json::encode($params) . ')');
+
 
         parent::run();
     }
