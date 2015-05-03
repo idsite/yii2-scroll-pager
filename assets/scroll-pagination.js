@@ -51,8 +51,16 @@
             params[data.options.nameParam] = ids.join(data.options.separatorId);
             if (!data.data.load && data.data.active)
             {
+
+                var csrfParam = $("meta[name='csrf-param']");
+                if (csrfParam.length)
+                {
+                    params[csrfParam.attr('content')] = $("meta[name='csrf-token']").attr('content');
+
+                }
+
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: data.options.url,
                     data: params,
                     headers: {"X-SCROLL-PAGER": "1"},

@@ -27,14 +27,14 @@ Usage
 
 
 
-нужно вручную добавить условие на фильтрацию по ИДшникам, которые передаються по умолчанию в GET параметре "notid".
+нужно вручную добавить условие на фильтрацию по ИДшникам, которые передаються по умолчанию в GET или POST параметре "notid".
 и установить limit на запрос. так как pagination не используется
 
 ```php
-if ($ids = Yii::$app->getRequest()->getQueryParam('notid')) {
+if ($ids = Yii::$app->getRequest()->post('notid',Yii::$app->getRequest()->getQueryParam('notid'))) {
             $ids = array_map(function($v) {
                 return (int) $v;
-            }, explode(',', $ids));
+            }, explode('-', $ids));
             if ($ids) {
                 return "AND city.id NOT IN (" . implode(',', $ids) . ")";
 }
@@ -42,8 +42,8 @@ if ($ids = Yii::$app->getRequest()->getQueryParam('notid')) {
 ```
 или если сортировка по айдишнику можно так
 ```php
-if ($ids = Yii::$app->getRequest()->getQueryParam('notid')) {
-            if ($ids = explode(',', $ids)) {
+if ($ids = Yii::$app->getRequest()->post('notid',Yii::$app->getRequest()->getQueryParam('notid'))) {
+            if ($ids = explode('-', $ids)) {
                 $query->andWhere('id<:lid',[':lid'=>array_pop($ids)]);
             }
         }
